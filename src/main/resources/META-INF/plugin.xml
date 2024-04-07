@@ -1,0 +1,27 @@
+<idea-plugin>
+    <id>com.zeroxera.android.res</id>
+
+    <name>Android Resource Move Handler</name>
+
+    <vendor url="https://github.com/0xera">Askhar</vendor>
+
+    <description>Allows to change R-class package name on the fly when moving resource files</description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.android</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+
+        <moveFileHandler implementation="com.zeroxera.android.res.AndroidResourceFileMoveHandler"/>
+
+        <applicationService
+                serviceImplementation="com.zeroxera.android.res.settings.AndroidResMovementSettings"/>
+
+        <applicationConfigurable id="com.zeroxera.android.res.settings"
+                                 displayName="Android Resource Move Handler"
+                                 instance="com.zeroxera.android.res.settings.AndroidResMovementConfigurable"
+                                 groupId="root"/>
+
+
+    </extensions>
+</idea-plugin>
