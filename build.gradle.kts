@@ -5,7 +5,7 @@ enum class Version(val studioVersion: String, val versionName: String) {
     Koala("2024.1.1.1", "Koala"),
 }
 
-val currentVersion = Version.Hedgehog
+val currentVersion = Version.Iguana
 
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.9.21"
