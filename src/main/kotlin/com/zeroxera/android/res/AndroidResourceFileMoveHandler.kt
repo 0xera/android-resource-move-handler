@@ -13,6 +13,8 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.impl.light.LightElement
 import com.intellij.refactoring.move.moveFilesOrDirectories.MoveFileHandler
+import com.intellij.refactoring.util.CommonRefactoringUtil
+import com.intellij.refactoring.util.RefactoringUIUtil
 import com.intellij.usageView.UsageInfo
 import com.intellij.util.containers.MultiMap
 import org.jetbrains.kotlin.idea.base.util.module
@@ -82,12 +84,12 @@ class AndroidResourceFileMoveHandler : MoveFileHandler() {
         targetDirectory: PsiDirectory
     ) {
         val destinationModule = targetDirectory.module ?: return
-
         usages.forEach { usage ->
             val element = usage.element
 
             if (element != null && handler.hasConflict(element, destinationModule)) {
-                conflicts.putValue(element, element.text)
+                val usageDescription = RefactoringUIUtil.getDescription(element, true)
+                conflicts.putValue(element, "$usageDescription will not have access to resources in module ${destinationModule.name}")
             }
         }
     }
