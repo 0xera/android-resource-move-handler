@@ -5,7 +5,7 @@ enum class Version(val studioVersion: String, val versionName: String) {
     Koala("2024.1.1.1", "Koala"),
 }
 
-val currentVersion = Version.Iguana
+val currentVersion = Version.Koala
 
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.9.21"
@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "com.zeroxera.android.res"
-version = "0.1-${currentVersion.versionName}"
+version = "0.1.1-${currentVersion.versionName}"
 
 repositories {
     mavenCentral()
