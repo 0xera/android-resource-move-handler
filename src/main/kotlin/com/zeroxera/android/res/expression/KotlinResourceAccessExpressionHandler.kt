@@ -25,7 +25,7 @@ class KotlinResourceAccessExpressionHandler : ResourceAccessExpressionHandler {
         val alias = import?.aliasName
 
         if (alias != null && !element.parent.text.startsWith(alias)) {
-            element.parent.replaceRClassAccess(ktPsiFactory.createExpression(alias))
+            element.replaceRClassAccess(ktPsiFactory.createExpression(alias))
         }
 
         if (import == null) {
