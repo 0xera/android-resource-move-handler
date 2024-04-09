@@ -76,8 +76,13 @@ private fun Sequence<ResourceReferencePsiElement>.ignoreStyleableAttrs(): Sequen
     map(ResourceReferencePsiElement.Companion::create)
      .filterNotNull()
      .map { element ->
-         val parentTag = element.parents.firstOrNull { it is XmlTag && it.localName == "declare-styleable" }
-         element.takeIf { parentTag == null }
+         var hasAttrParent = false
+         var hasDeclareStyleableParent = false
+         element.parents.forEach {
+             hasAttrParent = hasAttrParent || (it is XmlTag && it.localName == "attr")
+             hasDeclareStyleableParent = hasDeclareStyleableParent || (it is XmlTag && it.localName == "declare-styleable")
+         }
+         element.takeIf { !(hasAttrParent && hasDeclareStyleableParent) }
      }
      .filterNotNull()
 
