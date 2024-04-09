@@ -24,7 +24,7 @@ intellij {
     type.set("AI")
     downloadSources.set(true)
 
-    plugins.set(listOf("android"))
+    plugins.set(listOf("android", "org.jetbrains.kotlin", "java"))
 }
 
 tasks {
